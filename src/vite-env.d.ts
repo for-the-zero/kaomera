@@ -4,3 +4,21 @@ declare module "*.vue" {
     const component: DefineComponent<object, object, unknown>;
     export default component;
 };
+
+interface configType {
+    ai: {
+        baseUrl: string;
+        kei: string;
+        model: string;
+        temp: number;
+        pmt: string;
+    },
+    reqMethod: 'async' | 'wait';
+    reqItv: number;
+    camPrevMode: 'realtime' | 'match';
+    maxHistory: number;
+};
+interface statusType {
+    pip: boolean;
+    isRunning: boolean;
+};

@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { Sidebar, SidebarContent, SidebarProvider } from '@/components/ui/sidebar';
     import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+    import AboutPage from './parts/about.vue';
 </script>
 
 <template>
@@ -26,7 +27,7 @@
                         2<!-- TODO: -->
                     </TabsContent>
                     <TabsContent value="about">
-                        3<!-- TODO: -->
+                        <AboutPage />
                     </TabsContent>
                 </Tabs>
             </SidebarContent>
