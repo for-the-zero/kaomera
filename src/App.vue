@@ -3,8 +3,11 @@
     import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
     import { Button } from '@/components/ui/button';
     import { PanelBottomOpen } from 'lucide-vue-next';
+
     import AboutPage from './parts/about.vue';
     import SetPage from './parts/set.vue';
+    import OutputPage from './parts/output.vue';
+
     import { useGlbStore } from './utils/glb';
     const { config } = useGlbStore();
 </script>
@@ -29,8 +32,7 @@
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value="output">
-                        <!-- TODO: -->
-                        {{ config.moreInfo }}
+                        <OutputPage />
                     </TabsContent>
                     <TabsContent value="set">
                         <SetPage />
