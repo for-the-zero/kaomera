@@ -8,7 +8,7 @@
     <div class="flex flex-col justify-center gap-4 w-full">
         <h1 class="text-center text-6xl">(/ ≧▽≦ )/</h1>
         <h1 class="text-center text-4xl">Kaomera</h1>
-        <p class="text-center">把你的摄像头画面发给vLLM，让它给你一个颜文字</p>
+        <p class="text-center">把摄像头画面投喂给vLLM酱，给你画一个可爱地颜文字画像喵~</p>
         <div class="flex flex-row justify-center gap-2">
             <TooltipProvider><Tooltip>
                 <TooltipTrigger><Button size="icon" variant="outline" as-child><a href="https://github.com/for-the-zero/kaomera" target="_blank"><Github /></a></Button></TooltipTrigger>

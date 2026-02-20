@@ -17,6 +17,7 @@ interface configType {
     reqItv: number;
     camPrevMode: 'realtime' | 'match';
     maxHistory: number;
+    moreInfo: string;
 };
 interface statusType {
     pip: boolean;
