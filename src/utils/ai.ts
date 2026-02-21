@@ -1,29 +1,34 @@
 import { useGlbStore } from "./glb";
 
 let picHistory: string[] = [];
+let interval: ReturnType<typeof setInterval> | undefined;
 
 export const btnOnClick = () => {
     const { config, status } = useGlbStore();
-    if(status.isRunning){status.isRunning = false;return;};
+    if(status.isRunning){
+        if(interval){
+            clearInterval(interval);
+        };
+        status.isRunning = false;
+        return;
+    };
     if (!config.ai.baseUrl || !config.ai.model || !config.ai.pmt){
         status.isShowConfigInvalidDia = true;
         return;
     };
     status.isRunning = true;
-    // TODO:
-    req();
+    if(config.reqMethod === 'async'){
+        interval = setInterval(() => {
+            req();
+        }, config.reqItv * 1000);
+    } else {
+        req(true);
+    };
+    
 };
 
-async function asyncMode(){
-    // TODO:
-};
-
-async function waitMode(){
-    // TODO:
-};
-
-function req(){
-    const { config, outputs, getFrame } = useGlbStore();
+function req(isWait: boolean = false){
+    const { config, outputs, getFrame, status } = useGlbStore();
     if(!getFrame){return;};
     let pic = getFrame();
     if(!pic){return;};
@@ -73,6 +78,9 @@ function req(){
         if(!res.ok){
             if(outputs[outputs.length-1] !== '[error]'){
                 outputs.push('[error]');
+                if(isWait){
+                    status.isRunning = false
+                };
             };
         };
         res.json().then((data)=>{
@@ -83,10 +91,20 @@ function req(){
                 } else {
                     outputs.push(content);
                     useGlbStore().displayingFrame = pic;
+                    if(isWait && status.isRunning){
+                        setTimeout(() => {
+                            if(useGlbStore().status.isRunning){
+                                req(true);
+                            };
+                        }, config.reqItv * 1000);
+                    };
                 };
             } else {
                 if(outputs[outputs.length-1] !== '[error]'){
                     outputs.push('[error]');
+                    if(isWait){
+                        status.isRunning = false
+                    };
                 };
             };
         });
@@ -94,6 +112,9 @@ function req(){
         console.error(e);
         if(outputs[outputs.length-1] !== '[error]'){
             outputs.push('[error]');
+            if(isWait){
+                status.isRunning = false
+            };
         };
     });
 };
