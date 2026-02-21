@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import DrawerBtn from './parts/drawer.vue';
+    import Prev from './parts/preview.vue';
     import { Button } from '@/components/ui/button';
     import { Play, Pause } from 'lucide-vue-next';
     import { useGlbStore } from '@/utils/glb';
@@ -11,6 +12,7 @@
 </script>
 
 <template>
+    <Prev />
     <DrawerBtn />
     <Button variant="secondary"
         class="fixed bottom-7.5 left-1/2 transform -translate-x-1/2 text-3xl w-auto h-auto px-6 py-4"

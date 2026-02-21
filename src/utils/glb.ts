@@ -37,6 +37,7 @@ export const useGlbStore = defineStore('glbStore', () => {
         pip: false,
         isRunning: false
     });
+    const getFrame = ref<(() => string | null) | null>(null);
 
-    return { camQuote, config, outputs, status };
+    return { camQuote, config, outputs, status, getFrame };
 });
