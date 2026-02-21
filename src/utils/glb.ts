@@ -4,10 +4,12 @@ import pmtText from './prompt.md?raw';
 
 export const useGlbStore = defineStore('glbStore', () => {
     let ls = localStorage.getItem('kaomoji');
-    try{
-        JSON.parse(ls || '{}');
-    } catch(e) {
-        ls = null;
+    if(ls){
+        try{
+            JSON.parse(ls);
+        } catch(e) {
+            ls = null;
+        };
     };
     const config = ref<configType>((ls ? JSON.parse(ls) : null) || {
         ai: {
@@ -35,7 +37,8 @@ export const useGlbStore = defineStore('glbStore', () => {
     const outputs = ref<string[]>([]);
     const status = ref<statusType>({
         pip: false,
-        isRunning: false
+        isRunning: false,
+        isShowConfigInvalidDia: false,
     });
     const getFrame = ref<(() => string | null) | null>(null);
 

@@ -2,13 +2,17 @@
     import DrawerBtn from './parts/drawer.vue';
     import Prev from './parts/preview.vue';
     import { Button } from '@/components/ui/button';
+    import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
     import { Play, Pause } from 'lucide-vue-next';
     import { useGlbStore } from '@/utils/glb';
+    import { btnOnClick, setup } from '@/utils/ai';
 
     const { outputs, status } = useGlbStore();
+    setup();
     function displayerCopy(){
         navigator.clipboard.writeText(outputs[0]);
     };
+
 </script>
 
 <template>
@@ -23,10 +27,19 @@
     </Button>
     <Button :variant="status.isRunning ? 'destructive' : 'default'"
         class="fixed bottom-7.5 left-7.5"
-        @click="()=>{status.isRunning = !status.isRunning}"
+        @click="btnOnClick"
     >
         <Pause v-if="status.isRunning" />
         <Play v-else />
         {{ status.isRunning ? "停止" : "启动" }}
     </Button>
+
+    <Dialog v-model:open="status.isShowConfigInvalidDia">
+        <DialogContent>
+            <DialogHeader>
+                <DialogTitle>AI模型配置不太对哦</DialogTitle>
+                <DialogDescription>到设置里检查一下吧</DialogDescription>
+            </DialogHeader>
+        </DialogContent>
+    </Dialog>
 </template>

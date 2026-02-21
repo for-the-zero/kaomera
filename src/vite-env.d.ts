@@ -22,4 +22,5 @@ interface configType {
 interface statusType {
     pip: boolean;
     isRunning: boolean;
+    isShowConfigInvalidDia: boolean;
 };
