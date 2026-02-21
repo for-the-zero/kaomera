@@ -5,12 +5,11 @@
     import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
     import { Play, Pause } from 'lucide-vue-next';
     import { useGlbStore } from '@/utils/glb';
-    import { btnOnClick, setup } from '@/utils/ai';
+    import { btnOnClick } from '@/utils/ai';
 
     const { outputs, status } = useGlbStore();
-    setup();
     function displayerCopy(){
-        navigator.clipboard.writeText(outputs[0]);
+        navigator.clipboard.writeText(outputs[outputs.length - 1]);
     };
 
 </script>
@@ -23,7 +22,7 @@
         v-if="outputs.length >= 1 && status.isRunning"
         @click="displayerCopy"
     >
-        {{ outputs[0] }}
+        {{ outputs[outputs.length - 1] }}
     </Button>
     <Button :variant="status.isRunning ? 'destructive' : 'default'"
         class="fixed bottom-7.5 left-7.5"

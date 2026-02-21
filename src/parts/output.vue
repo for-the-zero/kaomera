@@ -49,7 +49,7 @@
         <Button 
             variant="outline" size="lg" 
             class="mr-2 mb-2"
-            v-for="value in outputs"
+            v-for="value in outputs.toReversed()"
             @click="copyText(value)"
         >
             {{ value }}

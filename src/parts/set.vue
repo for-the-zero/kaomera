@@ -16,6 +16,10 @@
     function saveConfig() {
         Object.assign(store.config, editingConfig.value);
     };
+    function resetConfig() {
+        localStorage.removeItem('kaomoji');
+        window.location.reload();
+    };
 </script>
 
 <template>
@@ -117,11 +121,12 @@
         </Field>
         <Field>
             <FieldLabel>给AI的补充信息</FieldLabel>
-            <Textarea v-model="editingConfig.moreInfo" />
+            <Input v-model="editingConfig.moreInfo" />
             <FieldDescription>可选，会添加到系统提示词中</FieldDescription>
         </Field>
     </FieldSet>
     <FieldSet class="flex flex-row gap-3 justify-end"> 
+        <Button variant="outline" size="lg" @click="resetConfig">恢复默认</Button>
         <Button size="lg" @click="saveConfig">保存</Button>
     </FieldSet>
 </template>

@@ -1,10 +1,11 @@
 <script setup lang="ts">
     import { CircleSlash2 } from 'lucide-vue-next';
     import { ref, onMounted } from 'vue';
+    import { storeToRefs } from 'pinia';
     import { useGlbStore } from '@/utils/glb';
-    
+
     const store = useGlbStore();
-    const { camQuote, config } = useGlbStore();
+    const { displayingFrame, config } = storeToRefs(store);
     const camUsable = ref(false);
     const camEleRef = ref<HTMLVideoElement | null>(null);
 
@@ -38,10 +39,10 @@
 <template>
     <div class="relative w-screen h-screen overflow-hidden">
         <video ref="camEleRef" v-show="config.camPrevMode == 'realtime'" class="absolute inset-0 w-full h-full object-contain scale-x-[-1]" playsinlineautoplay muted></video>
-        <img v-show="config.camPrevMode == 'match' && camQuote.length > 0" class="absolute inset-0 w-full h-full object-cover" :src="camQuote[0]">
+        <img v-show="config.camPrevMode == 'match' && displayingFrame" class="absolute inset-0 w-full h-full object-contain scale-x-[-1]" :src="displayingFrame">
     </div>
 
-    <div v-if="config.camPrevMode == 'match' && camQuote.length == 0"
+    <div v-if="config.camPrevMode == 'match' && !displayingFrame"
         class="flex flex-row justify-center gap-3 fixed top-[50vh] left-[50vw] transform -translate-x-1/2 -translate-y-1/2">
         <CircleSlash2 />
         <p>暂无画面</p>

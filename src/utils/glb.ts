@@ -33,7 +33,7 @@ export const useGlbStore = defineStore('glbStore', () => {
         { deep: true }
     );
 
-    const camQuote = ref<string[]>([]);
+    const displayingFrame = ref<string>('');
     const outputs = ref<string[]>([]);
     const status = ref<statusType>({
         pip: false,
@@ -42,5 +42,5 @@ export const useGlbStore = defineStore('glbStore', () => {
     });
     const getFrame = ref<(() => string | null) | null>(null);
 
-    return { camQuote, config, outputs, status, getFrame };
+    return { displayingFrame, config, outputs, status, getFrame };
 });
