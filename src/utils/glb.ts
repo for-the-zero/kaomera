@@ -24,6 +24,7 @@ export const useGlbStore = defineStore('glbStore', () => {
         camPrevMode: 'realtime',
         maxHistory: 3,
         moreInfo: '',
+        pip: { bg: '#0000FF', fg: "#FFFFFF", text: "#000000" }
     });
     watch(
         config,

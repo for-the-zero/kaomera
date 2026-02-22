@@ -12,7 +12,7 @@
 <template>
     <Drawer>
         <DrawerTrigger as-child>
-            <Button variant="ghost" class="fixed bottom-7.5 right-7.5" size="icon-lg"><PanelBottomOpen /></Button>
+            <Button variant="outline" class="fixed bottom-7.5 right-7.5" size="icon-lg"><PanelBottomOpen /></Button>
         </DrawerTrigger>
         <DrawerContent class="h-[80vh] m-auto w-screen sm:w-[60vw]">
             <div class="overflow-y-auto h-full">

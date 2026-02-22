@@ -5,6 +5,7 @@ import path from "node:path";
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
+    base: "./",
     plugins: [vue(), tailwindcss(), vueDevTools()],
     root: "src",
     resolve: {
@@ -14,5 +15,6 @@ export default defineConfig({
     },
     build: {
         outDir: "../dist",
+        assetsDir: "",
     },
 });

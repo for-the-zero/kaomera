@@ -3,6 +3,7 @@
     import { ref, onMounted } from 'vue';
     import { storeToRefs } from 'pinia';
     import { useGlbStore } from '@/utils/glb';
+    import PiPScript from './pip.vue';
 
     const store = useGlbStore();
     const { displayingFrame, config } = storeToRefs(store);
@@ -37,6 +38,7 @@
 </script>
 
 <template>
+    <PiPScript />
     <div class="relative w-screen h-screen overflow-hidden">
         <video ref="camEleRef" v-show="config.camPrevMode == 'realtime'" class="absolute inset-0 w-full h-full object-contain scale-x-[-1]" playsinlineautoplay muted></video>
         <img v-show="config.camPrevMode == 'match' && displayingFrame" class="absolute inset-0 w-full h-full object-contain scale-x-[-1]" :src="displayingFrame">

@@ -8,6 +8,7 @@
 
     import InputPw from './set_InputPw.vue';
     import InputNum from './set_InputNum.vue';
+    import InputClr from './set_InputClr.vue';
 
     import { ref } from 'vue';
     import { useGlbStore } from '../utils/glb';
@@ -98,6 +99,21 @@
             <Field>
                 <FieldLabel>上下文留存图像数</FieldLabel>
                 <InputNum :val="editingConfig.maxHistory" @change="(newVal: number)=>{editingConfig.maxHistory = newVal}" :is-int="true" :max="50" />
+            </Field>
+        </div>
+        <FieldLegend class="text-2xl">画中画设置</FieldLegend>
+        <div class="flex flex-row gap-3">
+            <Field>
+                <FieldLabel>背景颜色</FieldLabel>
+                <InputClr v-model="editingConfig.pip.bg" />
+            </Field>
+            <Field>
+                <FieldLabel>面板颜色</FieldLabel>
+                <InputClr v-model="editingConfig.pip.fg" />
+            </Field>
+            <Field>
+                <FieldLabel>文本颜色</FieldLabel>
+                <InputClr v-model="editingConfig.pip.text" />
             </Field>
         </div>
         <FieldLegend class="text-2xl">其他设置</FieldLegend>

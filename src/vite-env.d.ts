@@ -18,6 +18,11 @@ interface configType {
     camPrevMode: 'realtime' | 'match';
     maxHistory: number;
     moreInfo: string;
+    pip: {
+        bg: string;
+        fg: string;
+        text: string;
+    }
 };
 interface statusType {
     pip: boolean;
